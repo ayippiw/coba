@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Biografi Kelas Sistem Informasi</title>
+    <!-- Tambahkan ini untuk PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00d4ff">
+    <!-- Sisanya tetap sama -->
+    <style>
+        /* CSS Anda di sini */
+    </style>
+</head>
+<body>
+    <!-- Konten HTML tetap sama -->
+    
+    <!-- Tambahkan script untuk register service worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+        
+        // Script smooth scroll dan animasi tetap sama
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        cards = document.querySelectorAll('.card');
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+    </script>
+</body>
+</html>
+    <style>
+        /* Gaya dasar untuk body: font modern, latar belakang gradien gelap, warna teks abu-abu terang, dan smooth scroll */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* Header dengan efek slide down, padding besar, dan gradien teks untuk judul */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideDown 1.5s ease-out;
+        }
+        
+        /* Judul utama dengan efek gradien teks dan bayangan */
+        h1 {
+            font-size: 3.5em;
+            margin: 0;
+            background: linear-gradient(45deg, #00d4ff, #090979);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        /* Navigasi sticky dengan efek blur dan hover pada link */
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Link navigasi dengan efek hover dan garis bawah animasi */
+        nav a {
+            color: #e0e0e0;
+            margin: 0 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        nav a:hover {
+            color: #00d4ff;
+            transform: translateY(-2px);
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: #00d4ff;
+            transition: all 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        
+        /* Bagian utama dengan grid layout dan padding besar */
+        section {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        /* Card umum dengan efek blur, bayangan, dan animasi hover */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Judul bagian dengan warna aksen biru */
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #00d4ff;
+            text-align: center;
+        }
+        
+        /* Daftar jadwal tanpa bullet, dengan styling kotak untuk setiap item */
+        .jadwal ul {
+            list-style: none;
+            padding: 0;
+        }
+        .jadwal li {
+            background: rgba(0, 212, 255, 0.1);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #00d4ff;
+            transition: background 0.3s;
+        }
+        .jadwal li:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+        
+        /* Struktur kelas dengan grid responsif untuk anggota */
+        .struktur {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        /* Setiap anggota dengan efek hover dan gambar bulat */
+        .anggota {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+        .anggota:hover {
+            transform: scale(1.05);
+        }
+        .anggota img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #00d4ff;
+            transition: border-color 0.3s;
+        }
+        .anggota:hover img {
+            border-color: #ff6b6b;
+        }
+        
+        /* Galeri dengan grid gambar dan efek hover zoom/rotate */
+        .galeri {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .galeri img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .galeri img:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Footer dengan efek blur dan border atas */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animasi slide down untuk header */
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Animasi fade in up untuk card */
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Media query untuk responsivitas di layar kecil */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            section { padding: 40px 20px; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header dengan judul dan deskripsi kelas -->
+    <header>
+        <h1>Sistem Informasi 1A AMIK TARUNA</h1>
+        <p>Kelas inovatif dan penuh semangat di dunia teknologi!</p>
+    </header>
+    
+    <!-- Navigasi dengan link ke bagian utama -->
+    <nav>
+        <a href="#jadwal">Jadwal Kelas</a>
+        <a href="#struktur">Struktur Kelas</a>
+        <a href="#galeri">Galeri</a>
+    </nav>
+    
+    <!-- Bagian utama dengan tiga card: jadwal, struktur, dan galeri -->
+    <section>
+        <!-- Card untuk jadwal kelas -->
+        <div id="jadwal" class="card jadwal">
+            <h2>Jadwal Kelas</h2>
+            <ul>
+                <li><strong>Senin:</strong> Algoritma Pemrograman (08:00 - 11:00) - Pendidikan Agama (13:30 - 15:00)</li>
+                <li><strong>Selasa:</strong> Aplikasi Media Sosial (09:30 - 11:00) - (12:00 - 13:30)</li>
+                <li><strong>Rabu:</strong> Pengantar Manajemen (08:00 - 09:30) - Pengantar Sistem Komputer (09:30 - 11:00) - Pendidikan Pancasila (12:00 - 13:30)</li>
+                <li><strong>Kamis:</strong> Aplikasi Perkantoran (08:00 - 11:00) - Pengantar Database (12:00 - 15:00)</li>
+            </ul>
+        </div>
+        
+        <!-- Card untuk struktur kelas dengan anggota -->
+        <div id="struktur" class="card struktur">
+            <h2>Struktur Kelas</h2>
+            <div class="anggota">
+                <img src="img/arif.JPEG" alt="Ketua">
+                <h3>Miftahul Arif Hidayatullah</h3>
+                <p>Ketua Kelas</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="https://via.placeholder.com/120x120/ff6b6b/FFF?text=Sari" alt="">
+                <h3>Mahesa Galuh Baskara</h3>
+                <p>Wakil Ketua Kelas</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="img/cinta.jpeg" alt="">
+                <h3>Cinta Aurellianty</h3>
+                <p>Sekretaris</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="img/febri.jpeg" alt="">
+                <h3>Febriyanti Ramadani</h3>
+                <p>Bendahara 1</p>
+                <p></p>
+            </div>
+             <div class="anggota">
+                <img src="img/ilul.jpeg" alt="">
+                <h3>Ilul Izati Alifia</h3>
+                <p>Bendahara 2</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="https://via.placeholder.com/120x120/f9ca24/000?text=" alt="">
+                <h3>Afiefah Nabila</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="img/anjala.jpeg" alt="">
+                <h3>Anjala Sakinah</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="img/naurah.jpeg" alt="">
+                <h3>Naurah Rohmah Ramadhani</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="https://via.placeholder.com/120x120/f9ca24/000?text=" alt="">
+                <h3>Ikies Syarul Sura Adiasa</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="img/isnaini.jpeg" alt="">
+                <h3>Isnaini Fadilatul Hasanah</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="https://via.placeholder.com/120x120/f9ca24/000?text=" alt="">
+                <h3>Nafisah Indana Zulfa</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="img/via.jpeg" alt="">
+                <h3>Rizky Suryani Oktavia</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="img/tanti.jpeg" alt="">
+                <h3>Tanti Nurmala</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="https://via.placeholder.com/120x120/f9ca24/000?text=" alt="">
+                <h3>Boy Akill Ramadhani</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="https://via.placeholder.com/120x120/f9ca24/000?text=" alt="">
+                <h3>Muhammad Fawwaz Nur Firdaus</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="img/nita.jpeg" alt="">
+                <h3>Nita Zadana</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="img/fatimah.jpeg" alt="">
+                <h3>Fathimah Azzahro</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="img/nisa.jpeg" alt="">
+                <h3>Anisatul Maulidiyah Muthoharoh</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+            <div class="anggota">
+                <img src="https://via.placeholder.com/120x120/f9ca24/000?text=" alt="">
+                <h3>Lendy Trio Febriansyah</h3>
+                <p>Anggota</p>
+                <p></p>
+            </div>
+        </div>
+        
+        <!-- Card untuk galeri dengan gambar -->
+        <div id="galeri" class="card galeri">
+            <h2>Galeri</h2>
+            <img src="img/Kelas.JPEG">
+            <img src="img/Kelas2.JPEG">
+            <img src="img/Kelas3.JPEG">
+            <img src="img/Kelas 4.JPEG">
+        </div>
+    </section>
+    
+    <!-- Footer dengan copyright -->
+    <footer>
+        <p>&copy; 2025 Web Biografi Kelas Sistem Informasi 1A AMIK TARUNA PROBOLINGGO.</p>
+    </footer>
+    
+    <!-- Script JavaScript untuk smooth scroll dan animasi stagger -->
+    <script>
+        // Fungsi untuk smooth scroll pada klik link navigasi
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animasi stagger untuk card agar muncul bertahap
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+        });
+    </script>
+</body>
+</html>

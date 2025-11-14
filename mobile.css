@@ -1,0 +1,63 @@
+/* Kode CSS untuk tampilan di HP (layar kecil, max-width: 768px) */
+
+/* Mengubah ukuran judul utama agar lebih kecil di HP */
+h1 {
+    font-size: 2.5em;
+}
+
+/* Mengurangi padding pada bagian utama untuk menghemat ruang di HP */
+section {
+    padding: 40px 20px;
+}
+
+/* Mengurangi padding pada card agar lebih ringkas di HP */
+.card {
+    padding: 20px;
+}
+
+/* Mengubah grid struktur kelas menjadi satu kolom di HP untuk kemudahan scroll */
+.struktur {
+    grid-template-columns: 1fr; /* Satu kolom saja di HP */
+}
+
+/* Mengubah grid galeri menjadi satu kolom di HP, dengan gambar lebih kecil */
+.galeri {
+    grid-template-columns: 1fr; /* Satu kolom untuk gambar */
+}
+
+/* Mengurangi tinggi gambar galeri di HP agar tidak terlalu besar */
+.galeri img {
+    height: 150px; /* Lebih kecil dari desktop */
+}
+
+/* Mengurangi margin pada anggota struktur agar lebih compact di HP */
+.anggota {
+    margin-bottom: 15px;
+}
+
+/* Mengurangi ukuran gambar anggota di HP */
+.anggota img {
+    width: 100px;
+    height: 100px;
+}
+
+/* Mengurangi padding navigasi di HP untuk ruang lebih */
+nav {
+    padding: 10px;
+}
+
+/* Mengurangi margin link navigasi di HP */
+nav a {
+    margin: 0 15px;
+    font-size: 1em; /* Lebih kecil */
+}
+
+/* Mengurangi padding header di HP */
+header {
+    padding: 40px 20px;
+}
+
+/* Mengurangi padding footer di HP */
+footer {
+    padding: 20px;
+}

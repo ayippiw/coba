@@ -1,0 +1,20 @@
+ {
+  "name": "Biografi Kelas Sistem Informasi",
+  "short_name": "Kelas SI",
+  "description": "Web biografi kelas Sistem Informasi dengan jadwal, struktur, dan galeri.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "theme_color": "#00d4ff",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192/00d4ff/000?text=Icon", 
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512/00d4ff/000?text=Icon", 
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
